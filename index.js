@@ -14,7 +14,8 @@
     else{
           console.log("con success");
           //InsertData(MyMongoClinet); 
-          DeleteOneItem(MyMongoClinet);
+          //DeleteOneItem(MyMongoClinet);
+          DeleteAllItem(MyMongoClinet);
     }
    })
 
@@ -47,7 +48,7 @@ function InsertData(MyMongoClinet) {
 
 
 
-// //Delete Data
+// //Delete One Data
 
 function DeleteOneItem(MyMongoClinet) {
   var MyDataBase = MyMongoClinet.db("school");
@@ -65,3 +66,25 @@ function DeleteOneItem(MyMongoClinet) {
 
    });
 }
+
+
+
+// //Delete All Data
+
+function DeleteAllItem(MyMongoClinet) {
+  var MyDataBase = MyMongoClinet.db("school");
+   var MyCollection = MyDataBase.collection("students");
+   
+
+   MyCollection.deleteMany(function(error,Resultobj){
+
+    if (error) {
+      console.log("Data Delete fail");
+    } else {
+      console.log(Resultobj.result.n +"Item Delteed");
+    }
+
+
+   });
+}
+
