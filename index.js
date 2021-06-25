@@ -13,20 +13,25 @@
     }
     else{
           console.log("con success");
-          InsertData(MyMongoClinet); 
+          //InsertData(MyMongoClinet); 
+          DeleteOneItem(MyMongoClinet);
     }
    })
+
+
+
+
 
 
    //Insert Data
 
 
-   function InsertData(MyMongoClinet) {
+function InsertData(MyMongoClinet) {
 
-     var MyDataBase = MyMongoClinet.db("school");
+  var MyDataBase = MyMongoClinet.db("school");
    var MyCollection =   MyDataBase.collection("students");
 
-   var MyData = {Name :"Ramim Hossain",Roll:"1",Class:"Ten",City:"Dhaka"};
+   var MyData = {Name :"Lima",Roll:"2",Class:"Ten",City:"Raj"};
 
    MyCollection.insertOne(MyData,function(error){
 
@@ -37,7 +42,26 @@
          console.log("con insert success");
     }
    })
+}
 
 
 
-   }
+
+// //Delete Data
+
+function DeleteOneItem(MyMongoClinet) {
+  var MyDataBase = MyMongoClinet.db("school");
+   var MyCollection = MyDataBase.collection("students");
+   
+   var DeleteItem = {Roll: "2"}
+   MyCollection.deleteOne(DeleteItem,function(error){
+
+    if (error) {
+      console.log("Data Delete fail");
+    } else {
+      console.log("Data Delete  success");
+    }
+
+
+   });
+}
