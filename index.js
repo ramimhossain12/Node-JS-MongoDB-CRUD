@@ -13,7 +13,8 @@ MongoClient.connect(URL, config, function (error, MyMongoClinet) {
     //InsertData(MyMongoClinet);
     //DeleteOneItem(MyMongoClinet);
     //DeleteAllItem(MyMongoClinet);
-    findWithOutCondition(MyMongoClinet);
+   // findWithOutCondition(MyMongoClinet);
+   UpdateMyData(MyMongoClinet);
   }
 });
 
@@ -23,7 +24,7 @@ function InsertData(MyMongoClinet) {
   var MyDataBase = MyMongoClinet.db("school");
   var MyCollection = MyDataBase.collection("students");
 
-  var MyData = { Name: "Lima", Roll: "2", Class: "Ten", City: "Raj" };
+  var MyData = { Name: "Lima", Roll: "1", Class: "Ten", City: "Raj" };
 
   MyCollection.insertOne(MyData, function (error) {
     if (error) {
@@ -74,4 +75,24 @@ function findWithOutCondition(MyMongoClinet) {
   MyCollection.findOne(FindObj, function (error, result) {
     console.log(result);
   });
+}
+
+
+//Data Update 
+
+function UpdateMyData(MyMongoClinet) {
+
+var MyDataBase = MyMongoClinet.db("school");
+var MyCollection = MyDataBase.collection("students");
+
+
+var MyQuery = {Roll:"1"};
+var MyNewValue = {$set:{Name:"Ramim Hossain Hridoy",City:"London"}}
+MyCollection.updateOne(MyQuery, MyNewValue,function(error,result){
+
+      console.log(result);
+
+});
+ 
+
 }
